@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A premium pink-and-gold fairy-tale birthday surprise under a dreamy purple midnight sky.">
+  <meta name="theme-color" content="#120a1f">
+  <title>Happy Birthday ✦ A Fairy-Tale Surprise</title>
+
+  <!-- Fonts: Baloo 2 (headings) + Inter (body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ============================================================
+       SVG SPRITE — reusable decorations (sparkle, star, heart, swirl, bow)
+       ============================================================ -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <defs>
+      <symbol id="ico-sparkle" viewBox="0 0 24 24">
+        <path d="M12 1.5c.6 5.5 4 8.9 9.5 9.5-5.5.6-8.9 4-9.5 9.5-.6-5.5-4-8.9-9.5-9.5 5.5-.6 8.9-4 9.5-9.5z" fill="currentColor"/>
+      </symbol>
+      <symbol id="ico-star" viewBox="0 0 24 24">
+        <path d="M12 2l2.9 6.6 7.1.7-5.4 4.8 1.6 7L12 17.4 5.8 21.1l1.6-7L2 9.3l7.1-.7L12 2z" fill="currentColor"/>
+      </symbol>
+      <symbol id="ico-heart" viewBox="0 0 24 24">
+        <path d="M12 21s-7.5-4.6-9.6-9.2C.8 8.2 3 4.5 6.6 4.5c2 0 3.6 1.1 4.4 2.5 1-1.4 2.6-2.5 4.6-2.5 3.6 0 5.8 3.7 4.2 7.3C17.6 16.4 12 21 12 21z" fill="currentColor"/>
+      </symbol>
+      <symbol id="ico-swirl" viewBox="0 0 200 80">
+        <path d="M4 60c30-40 60-40 80-10s40 30 60 10 40-30 52-5" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+        <circle cx="196" cy="55" r="3" fill="currentColor"/>
+        <circle cx="4" cy="60" r="3" fill="currentColor"/>
+      </symbol>
+      <symbol id="ico-bow" viewBox="0 0 64 40">
+        <path d="M32 20C22 8 6 4 4 12c-2 9 14 16 28 8zm0 0c10-12 26-16 28-8 2 9-14 16-28 8z" fill="currentColor" opacity=".9"/>
+        <path d="M32 20c-6 4-10 12-8 18M32 20c6 4 10 12 8 18" stroke="currentColor" stroke-width="3" fill="none" stroke-linecap="round"/>
+        <circle cx="32" cy="20" r="5" fill="#ffd98a"/>
+      </symbol>
+      <symbol id="ico-butterfly" viewBox="0 0 64 64">
+        <path d="M32 30C24 12 6 8 4 20c-2 10 10 18 26 16zM32 30c8-18 26-22 28-10 2 10-10 18-26 16z" fill="currentColor" opacity=".95"/>
+        <path d="M32 34c-8-2-20 4-18 12 2 8 14 6 18-6zm0 0c8-2 20 4 18 12-2 8-14 6-18-6z" fill="currentColor" opacity=".7"/>
+        <path d="M32 26v20M30 24l-4-8M34 24l4-8" stroke="#ffd98a" stroke-width="2" stroke-linecap="round"/>
+      </symbol>
+    </defs>
+  </svg>
+
+  <!-- ============================================================
+       CINEMATIC BACKGROUND (fixed, multi-layer)
+       ============================================================ -->
+  <div class="sky" aria-hidden="true">
+    <div class="sky__aurora"></div>
+    <div class="sky__orb sky__orb--pink"></div>
+    <div class="sky__orb sky__orb--violet"></div>
+    <div class="sky__orb sky__orb--gold"></div>
+    <canvas id="stars-canvas" class="sky__stars"></canvas>
+  </div>
+
+  <!-- ============================================================
+       1. CINEMATIC COUNTDOWN (full-screen overlay)
+       ============================================================ -->
+  <div id="countdown" class="countdown" role="dialog" aria-label="Birthday countdown" aria-live="polite">
+    <div class="countdown__glow"></div>
+    <div id="countdown-number" class="countdown__number">3</div>
+    <p class="countdown__hint">Something magical is about to begin…</p>
+    <button id="countdown-skip" class="countdown__skip" type="button">Skip ✦</button>
+  </div>
+
+  <!-- ============================================================
+       MAIN CONTENT
+       ============================================================ -->
+  <main id="main" class="page">
+
+    <!-- ===================== 2. HERO ===================== -->
+    <section id="hero-section" class="hero section">
+      <!-- Decorations -->
+      <div class="hero__deco" aria-hidden="true">
+        <div class="balloon balloon--pink" style="--x:6%;  --y:14%; --d:9s;  --dl:0s"></div>
+        <div class="balloon balloon--gold" style="--x:14%; --y:44%; --d:11s; --dl:-3s"></div>
+        <div class="balloon balloon--violet" style="--x:88%; --y:18%; --d:10s; --dl:-5s"></div>
+        <div class="balloon balloon--rose" style="--x:80%; --y:58%; --d:12s; --dl:-2s"></div>
+        <svg class="deco deco--butterfly" style="--x:24%; --y:22%"><use href="#ico-butterfly"/></svg>
+        <svg class="deco deco--heart" style="--x:72%; --y:12%"><use href="#ico-heart"/></svg>
+        <svg class="deco deco--sparkle" style="--x:60%; --y:80%; --d:4s"><use href="#ico-sparkle"/></svg>
+        <svg class="deco deco--sparkle deco--small" style="--x:30%; --y:70%; --d:5s; --dl:-2s"><use href="#ico-sparkle"/></svg>
+        <svg class="deco deco--star" style="--x:92%; --y:82%; --d:6s"><use href="#ico-star"/></svg>
+        <svg class="deco deco--swirl" style="--x:50%; --y:92%"><use href="#ico-swirl"/></svg>
+      </div>
+
+      <div class="hero__inner container">
+        <div class="hero__text reveal">
+          <p class="eyebrow">✦ TONIGHT IS ALL ABOUT YOU ✦</p>
+          <h1 class="hero__title">
+            Happy Birthday,<br>
+            <span class="glow-pink" data-bind="name">Birthday Girl</span>!
+          </h1>
+          <p class="hero__lead" data-bind="heroIntro">
+            Tonight the sky is a little more purple, the stars a little more gold,
+            and every wish is a little more likely to come true — because it's your day.
+          </p>
+          <div class="hero__actions">
+            <a href="#letter-section" class="btn btn--primary" id="start-surprise-btn">Start the Surprise ✦</a>
+            <button type="button" class="btn btn--secondary" id="make-wish-btn">Make a Wish ♡</button>
+          </div>
+        </div>
+
+        <figure class="hero__photo reveal reveal--delay">
+          <div class="photo-frame">
+            <div class="photo-frame__ring"></div>
+            <div class="photo-frame__inner">
+              <!-- 📸 Replace assets/images/hero.jpg with your main photo -->
+              <img src="assets/images/hero.jpg" alt="The birthday girl" class="photo-frame__img" data-placeholder="hero">
+              <div class="photo-placeholder" aria-hidden="true">
+                <svg class="photo-placeholder__icon"><use href="#ico-heart"/></svg>
+                <span>Add <code>assets/images/hero.jpg</code></span>
+              </div>
+            </div>
+            <svg class="photo-frame__bow" aria-hidden="true"><use href="#ico-bow"/></svg>
+          </div>
+        </figure>
+      </div>
+
+      <a href="#letter-section" class="scroll-cue" aria-label="Scroll to the birthday letter">
+        <span></span>
+      </a>
+    </section>
+
+    <!-- ===================== 3. BIRTHDAY LETTER ===================== -->
+    <section id="letter-section" class="section section--letter">
+      <div class="container narrow">
+        <header class="section__head reveal">
+          <p class="eyebrow">💌 A SECRET MESSAGE</p>
+          <h2 class="section__title">Open Your Birthday Letter</h2>
+          <p class="section__sub">Tap the envelope. Something soft is waiting inside.</p>
+        </header>
+
+        <div class="envelope-stage reveal">
+          <button id="envelope" class="envelope" type="button" aria-expanded="false" aria-controls="letter-paper" aria-label="Open the birthday letter">
+            <div class="envelope__back"></div>
+            <div class="envelope__letter" id="letter-paper" aria-hidden="true">
+              <div class="letter">
+                <svg class="letter__swirl letter__swirl--top" aria-hidden="true"><use href="#ico-swirl"/></svg>
+                <div class="letter__body" data-bind="letter">
+                  <!-- Letter text is injected from js/app.js (birthdayData.letter) -->
+                </div>
+                <svg class="letter__swirl letter__swirl--bottom" aria-hidden="true"><use href="#ico-swirl"/></svg>
+              </div>
+            </div>
+            <div class="envelope__pocket"></div>
+            <div class="envelope__flap"></div>
+            <div class="envelope__seal">
+              <svg aria-hidden="true"><use href="#ico-heart"/></svg>
+            </div>
+          </button>
+          <p class="envelope__cta" id="envelope-cta">Click to open ✦</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== 4. THINGS THAT REMIND ME OF YOU ===================== -->
+    <section id="reminders-section" class="section section--reminders">
+      <div class="container">
+        <header class="section__head reveal">
+          <p class="eyebrow">✦ LITTLE THINGS</p>
+          <h2 class="section__title">Things That Remind Me of You</h2>
+          <p class="section__sub">Six tiny pieces of you. Tap each one to reveal a note.</p>
+        </header>
+
+        <!-- Cards are rendered from birthdayData.reminders in js/app.js -->
+        <div id="reminder-grid" class="reminder-grid"></div>
+      </div>
+    </section>
+
+    <!-- ===================== 5. INTERACTIVE CAKE ===================== -->
+    <section id="cake-section" class="section section--cake">
+      <div class="container narrow">
+        <header class="section__head reveal">
+          <p class="eyebrow">🎂 MAKE IT OFFICIAL</p>
+          <h2 class="section__title">Time for Cake</h2>
+          <p class="section__sub">Close your eyes, make a wish, and cut the cake.</p>
+        </header>
+
+        <div class="cake-stage reveal" id="cake-stage">
+          <div class="cake-sparkles" aria-hidden="true">
+            <svg class="deco deco--sparkle deco--small" style="--x:22%; --y:10%; --d:3.5s"><use href="#ico-sparkle"/></svg>
+            <svg class="deco deco--sparkle" style="--x:75%; --y:4%; --d:4.5s; --dl:-1s"><use href="#ico-sparkle"/></svg>
+            <svg class="deco deco--star deco--small" style="--x:50%; --y:0%; --d:5s; --dl:-2s"><use href="#ico-star"/></svg>
+          </div>
+
+          <div class="cake" id="cake" role="img" aria-label="A three-layer pink and purple birthday cake with a lit candle">
+            <div class="cake__candle">
+              <div class="cake__flame"></div>
+              <div class="cake__smoke"></div>
+              <div class="cake__wax"></div>
+            </div>
+            <div class="cake__layer cake__layer--top">
+              <div class="cake__icing"></div>
+            </div>
+            <div class="cake__layer cake__layer--mid">
+              <div class="cake__icing"></div>
+            </div>
+            <div class="cake__layer cake__layer--base">
+              <div class="cake__icing"></div>
+            </div>
+            <div class="cake__plate"></div>
+            <div class="cake__knife" aria-hidden="true"></div>
+          </div>
+
+          <div class="cake__actions">
+            <button type="button" class="btn btn--primary" id="cut-cake-btn">Cut the Cake 🎂</button>
+          </div>
+          <p class="cake__message" id="cake-message" aria-live="polite" data-bind="cakeMessage"></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== 6. MEMORIES GALLERY ===================== -->
+    <section id="memories-section" class="section section--memories">
+      <div class="container">
+        <header class="section__head reveal">
+          <p class="eyebrow">📷 MEMORY LANE</p>
+          <h2 class="section__title">Moments Worth Keeping</h2>
+          <p class="section__sub">A few polaroids from the story so far. Tap to see them big.</p>
+        </header>
+
+        <!-- Polaroids are rendered from birthdayData.memories in js/app.js -->
+        <div id="gallery" class="gallery"></div>
+      </div>
+    </section>
+
+    <!-- ===================== 7. GIFT SURPRISE ===================== -->
+    <section id="gift-section" class="section section--gift">
+      <div class="container narrow">
+        <header class="section__head reveal">
+          <p class="eyebrow">🎁 ONE MORE THING</p>
+          <h2 class="section__title">A Little Gift For You</h2>
+          <p class="section__sub">Go on. Open it.</p>
+        </header>
+
+        <div class="gift-stage reveal">
+          <button id="gift" class="gift" type="button" aria-label="Open the gift box" aria-expanded="false" aria-controls="gift-panel">
+            <div class="gift__glow"></div>
+            <div class="gift__lid">
+              <svg class="gift__bow" aria-hidden="true"><use href="#ico-bow"/></svg>
+              <div class="gift__ribbon-v"></div>
+            </div>
+            <div class="gift__box">
+              <div class="gift__ribbon-v"></div>
+              <div class="gift__ribbon-h"></div>
+            </div>
+            <div class="gift__burst" aria-hidden="true">
+              <svg><use href="#ico-sparkle"/></svg>
+              <svg><use href="#ico-heart"/></svg>
+              <svg><use href="#ico-star"/></svg>
+              <svg><use href="#ico-sparkle"/></svg>
+              <svg><use href="#ico-heart"/></svg>
+            </div>
+          </button>
+          <p class="gift__cta" id="gift-cta">Tap the gift ✦</p>
+
+          <div id="gift-panel" class="gift-panel glass" aria-hidden="true">
+            <svg class="gift-panel__sparkle" aria-hidden="true"><use href="#ico-sparkle"/></svg>
+            <h3 class="gift-panel__title" data-bind="giftTitle">You deserve beautiful things ✨</h3>
+            <p class="gift-panel__text" data-bind="giftMessage"></p>
+
+            <!-- 🎁 EDITABLE SURPRISE AREA: gift code / link / personal note (filled from birthdayData.giftExtra) -->
+            <div class="gift-panel__extra" id="gift-extra"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== 8. FINAL MESSAGE ===================== -->
+    <section id="final-section" class="section section--final">
+      <div class="final__hearts" aria-hidden="true">
+        <svg class="deco deco--heart deco--small" style="--x:10%; --y:70%; --d:8s"><use href="#ico-heart"/></svg>
+        <svg class="deco deco--heart" style="--x:85%; --y:30%; --d:9s; --dl:-3s"><use href="#ico-heart"/></svg>
+        <svg class="deco deco--heart deco--small" style="--x:70%; --y:85%; --d:7s; --dl:-5s"><use href="#ico-heart"/></svg>
+        <svg class="deco deco--sparkle" style="--x:20%; --y:25%; --d:4s; --dl:-1s"><use href="#ico-sparkle"/></svg>
+        <svg class="deco deco--star deco--small" style="--x:50%; --y:10%; --d:6s"><use href="#ico-star"/></svg>
+      </div>
+      <div class="container narrow final__inner reveal">
+        <p class="eyebrow">✦ A LITTLE FAIRY-TALE FOR ONE VERY SPECIAL PERSON ✦</p>
+        <h2 class="final__title glow-pink">Happy Birthday! ♡</h2>
+        <p class="final__text" data-bind="finalMessage"></p>
+        <button type="button" class="btn btn--primary" id="replay-btn">Replay the Magic ✦</button>
+        <p class="final__sign" data-bind="signature"></p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============================================================
+       FLOATING MUSIC BUTTON
+       ============================================================ -->
+  <button id="music-btn" class="music-btn glass" type="button" aria-label="Play birthday music" aria-pressed="false">
+    <span class="music-btn__icon">♪</span>
+    <span class="music-btn__bars" aria-hidden="true"><i></i><i></i><i></i></span>
+  </button>
+  <!-- 🎵 Replace assets/audio/birthday-song.mp3 with your song -->
+  <audio id="bg-music" src="assets/audio/birthday-song.mp3" loop preload="none"></audio>
+
+  <!-- Toast for small messages (e.g. missing audio) -->
+  <div id="toast" class="toast glass" role="status" aria-live="polite"></div>
+
+  <!-- ============================================================
+       LIGHTBOX MODAL
+       ============================================================ -->
+  <div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-label="Photo preview" aria-hidden="true">
+    <button type="button" class="lightbox__close" id="lightbox-close" aria-label="Close photo">✕</button>
+    <figure class="lightbox__figure">
+      <img id="lightbox-img" class="lightbox__img" src="" alt="">
+      <figcaption id="lightbox-caption" class="lightbox__caption"></figcaption>
+    </figure>
+  </div>
+
+  <!-- Confetti canvas (drawn only during celebrations) -->
+  <canvas id="confetti-canvas" class="confetti-canvas" aria-hidden="true"></canvas>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
