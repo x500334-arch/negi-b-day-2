@@ -334,7 +334,7 @@ async function runCountdown() {
   }
   if (skipped) return;
 
-  num.textContent = "SURPRISE!";
+  num.textContent = "Happy Birthday!";
   num.classList.remove("is-in");
   num.classList.add("is-surprise");
   Confetti.burst({ count: 160, x: 0.5, y: 0.45, spread: 1.3, hearts: true });
